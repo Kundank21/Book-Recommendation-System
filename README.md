@@ -23,15 +23,6 @@ A lightweight **chapter-level lookup** layer surfaces the next unread chapter on
 
 ### Requirements
 
-- Python 3.8+
-- Libraries: `pandas`, `numpy`, `scipy`, `scikit-learn`
-
-Install dependencies:
-
-```bash
-pip install pandas numpy scipy scikit-learn
-```
-
 ### Steps
 
 1. Place `chapters.csv` and `interactions.csv` in the same directory as the notebook.
