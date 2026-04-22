@@ -19,29 +19,6 @@ The system implements four recommendation strategies:
 
 A lightweight **chapter-level lookup** layer surfaces the next unread chapter once a book is recommended.
 
-## Results
-
-Evaluation uses leave-one-out split with 99 negative samples per test instance.
-
-| Model | HR@5 | HR@10 | HR@20 | NDCG@10 | MRR |
-|-------|------|-------|-------|---------|-----|
-| Popularity | 0.1498 | 0.2070 | 0.2935 | 0.1283 | 0.1229 |
-| CF (SVD) | 0.1809 | 0.2525 | 0.3543 | 0.1586 | 0.1483 |
-| Content-Based | 0.1156 | 0.1771 | 0.2665 | 0.1087 | 0.0979 |
-| **Hybrid** | **0.1896** | **0.2627** | **0.3653** | **0.1648** | **0.1543** |
-
-The Hybrid model outperforms all baselines across every metric.
-
-## Repository Structure
-
-```
-├── Untitled12.ipynb        # Main notebook (EDA, models, evaluation, examples)
-├── chapters.csv            # Book/chapter metadata (place in same directory)
-├── interactions.csv        # User–chapter interactions (place in same directory)
-├── solution_writeup.pdf    # One-page solution write-up
-└── README.md               # This file
-```
-
 ## How to Run
 
 ### Requirements
@@ -68,11 +45,3 @@ pip install pandas numpy scipy scikit-learn
 - **SVD rank 50** — Balances expressiveness vs. overfitting on a very sparse matrix (~0.01% density).
 - **Adaptive α blending** — Smoothly transitions from content-based (cold users) to CF (warm users) without a hard cutoff.
 - **Chapter lookup, not a sequence model** — A simple "next unread chapter" lookup is more appropriate than a sequence model given the data distribution.
-
-## Future Improvements
-
-- Author co-occurrence as collaborative signal
-- Implicit ALS (e.g., `implicit` library) for better handling of binary feedback
-- Temporal weighting — recent reads weighted higher
-- Graph-based methods (LightGCN) on the user–book bipartite graph
-- Sequence-aware model (SASRec) for the small multi-chapter user subset
